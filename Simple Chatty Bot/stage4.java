@@ -10,17 +10,13 @@ public class SimpleBot {
         System.out.println("I was created in 2018.");
         System.out.println("Please, remind me your name.");
 
-        String name = scanner.nextLine();
+        String botName = scanner.nextLine();
 
-        System.out.println("What a great name you have, " + name + "!");
+        System.out.println("What a great name you have, " + botName + "!");
         System.out.println("Let me guess your age.");
         System.out.println("Enter remainders of dividing your age by 3, 5 and 7.");
 
-        int rem3 = scanner.nextInt();
-        int rem5 = scanner.nextInt();
-        int rem7 = scanner.nextInt();
-
-         int r1 = scanner.nextInt();
+        int r1 = scanner.nextInt();
         int r2 = scanner.nextInt();
         int r3 = scanner.nextInt();
 
