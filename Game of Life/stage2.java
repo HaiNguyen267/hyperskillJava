@@ -1,0 +1,136 @@
+
+import java.util.*;
+class Main {
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int s = sc.nextInt();
+        int m = sc.nextInt();
+
+        Universe universe = new Universe(n, s);
+        universe.createTheUniverse();
+        universe.generateUniverse(m);
+        universe.showUniverse();
+
+    }
+}
+class Universe {
+    int seed;
+    int n;
+    String[][] map;
+    int[][] mapOfNumber;
+
+    public Universe (int n, int seed) {
+        this.n = n;
+        this.seed = seed;
+        this.map = new String[n][n];
+        this.mapOfNumber = new int[n][n];
+    }
+
+    public void createTheUniverse() {
+        Random random = new Random(this.seed);
+
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
+                this.map[i][j] = random.nextBoolean() == true ? "O" : " ";
+            }
+        }
+    }
+
+    public void showUniverse() {
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
+                System.out.print(this.map[i][j]);
+            }
+            System.out.println();
+        }
+
+
+    }
+
+    public void generateUniverse(int times) {
+        for (int i = 0; i < times; i++) {
+            mapToMapOfNumber();
+            mapOfNumberToMap();
+        }
+    }
+    private void mapOfNumberToMap() {
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
+                if (this.map[i][j].equals("O") && (this.mapOfNumber[i][j] < 2 || this.mapOfNumber[i][j] > 3)) {
+                    this.map[i][j] = " ";
+                }
+                else if (this.map[i][j].equals(" ") && this.mapOfNumber[i][j] == 3) {
+                    this.map[i][j] = "O";
+                }
+            }
+        }
+    }
+    private void mapToMapOfNumber() {
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
+                this.mapOfNumber[i][j] = countNumOfAliveNeighbor(i, j);
+            }
+        }
+    }
+    private int countNumOfAliveNeighbor(int i, int j) {
+        int numOfAliveNeighbor = 0;
+
+        int iMinusOne = i - 1;
+        if (iMinusOne < 0) {
+            iMinusOne = this.n - 1;
+        }
+
+        int iPlusOne = i + 1;
+        if (iPlusOne > this.n - 1) {
+            iPlusOne = 0;
+        }
+
+        int jMinusOne = j - 1;
+        if (jMinusOne < 0) {
+            jMinusOne = this.n - 1;
+        }
+
+        int jPlusOne = j + 1;
+        if (jPlusOne > this.n - 1) {
+            jPlusOne = 0;
+        }
+
+        // northwest
+        if (this.map[iMinusOne][jMinusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+        // north
+        if (this.map[iMinusOne][j].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+        // northeast
+        if (this.map[iMinusOne][jPlusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+
+        // west
+        if (this.map[i][jMinusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+        // east
+        if (this.map[i][jPlusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+
+        // southwest
+        if (this.map[iPlusOne][jMinusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+        // south
+        if (this.map[iPlusOne][j].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+        // southeast
+        if (this.map[iPlusOne][jPlusOne].equals("O")) {
+            numOfAliveNeighbor ++;
+        }
+
+        return numOfAliveNeighbor;
+    }
+}
