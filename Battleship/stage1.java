@@ -1,7 +1,4 @@
 
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -150,12 +147,12 @@ public class Main {
                             if (grids[i + 1][j].equals("O ")) {
                                 throw new WrongLocation("Error! You placed it too close to another one. Try again:");
                             }
-                        }
+                        } // check side1 close to other ship
                         if (i > 1) {
                             if (grids[i - 1][j].equals("O ")) {
                                 throw new WrongLocation("Error! You placed it too close to another one. Try again:");
                             }
-                        }
+                        } // check side2 close to other ship 
 
                         if (grids[i][j].equals("O ")) {
                             throw new WrongLocation("Error! A ship cannot cross other");
@@ -186,13 +183,13 @@ public class Main {
                                 //System.out.println("side1123");
                                 throw new WrongLocation("Error! You placed it too close to another one. Try again:");
                             }
-                        }
+                        } // check side 1 close to other ship
                         if (j > 1) {
                             if (grids[i][j - 1].equals("O ")) {
                                 //System.out.println("soide456");
                                 throw new WrongLocation("Error! You placed it too close to another one. Try again:");
                             }
-                        }
+                        } // check side 2 close to other ship
 
                         if (grids[i][j].equals("O ")) {
                                 throw new WrongLocation("Error! A ship cannot cross other");
