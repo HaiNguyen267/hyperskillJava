@@ -60,19 +60,19 @@ public class Main {
 
                 count ++;
 
-                // grading
-
+                
+                // printing grade
                 String bullNum = bulls > 1? "bulls" : bulls == 1? "bull" : "";
                 String cowNum = cows > 1? "cows" : cows == 1? "cow" : "";
-
-                if (bulls == 0 && cows == 0) {
-                    System.out.println("Grade: None");
-                } else if (bulls != 0 && cows != 0){
-                    System.out.println(String.format("Grade: %d %s and %d %s", bulls, bullNum, cows, cowNum));
+               if (bulls != 0 && cows != 0){
+                    System.out.println(String.format("Grade: %d %s and %d %s", bulls, bullNum, cows, cowNum)); // having both bulls and cows
                 } else if (bulls != 0) {
-                    System.out.println(String.format("Grade: %d %s", bulls, bullNum));
+                    System.out.println(String.format("Grade: %d %s", bulls, bullNum)); // only bulls
                 } else if (cows != 0) {
-                    System.out.println(String.format("Grade: %d %s", cows, cowNum));
+                    System.out.println(String.format("Grade: %d %s", cows, cowNum)); // only cows
+                } else {
+                    System.out.println("Grade: None"); // no bulls, no cows
+
                 }
             }
 
